@@ -54,18 +54,73 @@ public class TheWrongWayCow {
     	int savex = 0;
     	int savey = 0;
         for(int i=0;i<field.length;i++) {
-        	for(int j=0;i<field.length;j++) {
-        		if(field[i][j]=='w'&&field[i+1][j+1]=='o'&&field[i+2][j+2]=='w') {
-        			savex = i+2;
-        			savey = j+2;
+        	for(int j=0;i<field.length;j++) { 
+        		if(rightcow()) {
+        			
         		}
         	}
-        }
+        } 
         int[] result = {savex,savey};
         return result;
     } 
+    public static boolean rightcow(final char[][] field) {
+    	for(int i=0;i<field.length;i++) {
+    		for(int j=0;j<field.length;j++) {
+    			if(field[i][j]=='C'){
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
+    }
 }
-/* 
- * boolean rightCow (field, i, j) 
+/*  I am not sure how to use this boolean into the code
  * 
+ * i'll answer that in a moment.  but first, what are your thoughts about
+ * how to approach the overall problem?  would it help to look at the test
+ * cases?  for example:
+ * final char[][] field =  new char[][] {
+      "c..........".toCharArray(),
+      "o...c......".toCharArray(),
+      "w...o.c....".toCharArray(),
+      "....w.o....".toCharArray(),
+      "......w.cow".toCharArray()
+      
+      see how there are 3 "down" cows, one "right" cow and no "left" or "up" cows.
+      
+ * 
+ * boolean rightCow (field, i, j) 
+ * 		this method would check in 'field' at cell [i][j] to see
+ *      if it is the heead of a "right" cow.  it would return true if so.
+ *      
+ *  how do you think this method would be used in the code above?...
+ *  If it returns true that means we can check the next two ones and see if it the wrong way cow
+     No. I had in mind that "rightCow" meethod checks 3 cells for 'c' 'o' 'w',
+     like your code on line 58 above.
+     
+      If there *is* a 'c' 'o' 'w' there, you still don't know if it is a
+      WRONG WAY cow... do you understand how to determine if it is WRONG WAY?
+      
+      There is only one cow going the wrong way.  It could be an 'up' cow,
+      'down' or 'right' or 'left'...how do you determine its the WRONG WAY?
+      
+      not sure?  you there?
+      We can determine the wrong way by comparing it to other cows that are in the lists? There are lots of cows in the same way
+      Can you be more specific - "compare" how? So basically using a double for loop, comparing each one another until all of the cows are compared in the array 
+      I'm still not clear on "compare". can i explain what needs to happen? okay
+      
+      In every test case, there are zero or more cows in each of the 4 directions,
+      right? yes.  how many cows are there in the "wrong way' direction? 1
+      right.  so the double for loop needs to make a count of cows in
+      each of the 4 directions.  Only AFTER the loops are done can you
+      decide which is the 'wrong way' by looking for the count of 1.
+      make sense? okay. 
+      
+      now if you make 4 methods, rightCow, leftCow, upCow, downCow, you
+      can call these inside the for loops, checking each cell in the field.
+      
+      is this making sense so far?yes  does this help?yes.  ok.  then
+      once you determine which is the 'wrong way', you need to go back in
+      the field and find where its head is!
+ *
  */

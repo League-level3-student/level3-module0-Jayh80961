@@ -52,20 +52,43 @@ public class TheWrongWayCow {
 
     public static int[] findWrongWayCow(final char[][] field) {
     	int savex = 0;
-    	int savey = 0;
+    	int savey = 0;// can i comment?...
+    	// visit each cell in grid -> 
+    	// keep count of cows in the 4 different directions
+    	
         for(int i=0;i<field.length;i++) {
         	for(int j=0;i<field.length;j++) { 
-        		if(rightcow()) {
+        		if()) {
         			
         		}
         	}
         } 
         int[] result = {savex,savey};
         return result;
-    } 
-    public static boolean rightcow(final char[][] field) {
-    	for(int i=0;i<field.length;i++) {
-    		for(int j=0;j<field.length;j++) {
+    } // can i say something?
+    // I meant for the method 'rightCow' to check just
+    // 3 cells for 'c' 'o' 'w', where the 'c' is at field[i][j]
+    // and then also make methods 'leftcow', 'upcow', 'downcow'
+    // questions?...oh okay got it
+    // the method doesn't need a pair of nested loops!
+    // ok i think i see what you are doing.  this
+    // method is keeping count of *all* the left cows
+    // in the field - is that why you have a pair of
+    // nested loops? what do you mean  
+    public static int leftcow(final char[][] field,int i, int j) {
+		int count = 0;
+    	for(int k=0;k<field.length;k++) {
+			for(int l=0;l<field.length;l++) {
+				if(field[k][l]=='C'&&field[k][l-1]=='O'&&field[k][l-2]=='W') {
+					count++; 
+				} 
+			}
+		}
+    	return count;
+    }
+    public static boolean rightcow(final char[][] field, int i, int j) {
+    	for(int k=0;k<field.length;k++) {
+    		for(int l=0;l<field.length;l++) {
     			if(field[i][j]=='C'){
     				return true;
     			}

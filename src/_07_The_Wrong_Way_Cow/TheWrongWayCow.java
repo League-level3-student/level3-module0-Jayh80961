@@ -44,58 +44,134 @@
  * .woco..
  * .ow.c..
  * .c.....
-*/
+ */
 
 package _07_The_Wrong_Way_Cow;
 
 public class TheWrongWayCow {
 
-    public static int[] findWrongWayCow(final char[][] field) {
-    	int savex = 0;
-    	int savey = 0;// can i comment?...
-    	// visit each cell in grid -> 
-    	// keep count of cows in the 4 different directions
-    	
-        for(int i=0;i<field.length;i++) {
-        	for(int j=0;i<field.length;j++) { 
-        		if()) {
-        			
-        		}
-        	}
-        } 
-        int[] result = {savex,savey};
-        return result;
-    } // can i say something?
-    // I meant for the method 'rightCow' to check just
-    // 3 cells for 'c' 'o' 'w', where the 'c' is at field[i][j]
-    // and then also make methods 'leftcow', 'upcow', 'downcow'
-    // questions?...oh okay got it
-    // the method doesn't need a pair of nested loops!
-    // ok i think i see what you are doing.  this
-    // method is keeping count of *all* the left cows
-    // in the field - is that why you have a pair of
-    // nested loops? what do you mean  
-    public static int leftcow(final char[][] field,int i, int j) {
+	public static int[] findWrongWayCow(final char[][] field) {
+		int savex = 0;
+		int savey = 0;
+		int check1 = 0;
+		int check2 = 0;
+		int check3 = 0;
+		int check4 = 0;// can i comment?...
+		// visit each cell in grid -> 
+		// keep count of cows in the 4 different directions
+		
+		// there are multiple ways to write this code.  the way
+		// you are doing it, (1) you don't need for loops right here and
+		// (2)  the methods leftcow, etc, don't need parameters i and j.
+		// can i show you what i mean?yes.  questions? okay
+//		for(int i=0;i<field.length;i++) {
+//			for(int j=0;i<field[i].length;j++) { // can i say something
+				check1 = check1 + leftcow(field); 
+				check2 = check2 + rightcow(field);
+				check3 = check3 + upcow(field);
+				check4 = check4 + downcow(field);
+				
+				if(check1 == 1) {
+					// call a new method here that looks for and returns the
+					// cell with the head of a COW in the rightcow direction
+					//should I create a new method? yes.  it's a bit like the
+					// rigtCow method that does a count.  BUT the new method
+					// is a bit different - it returns the location of 
+					// the head of the right cow.
+				}
+				else if(check2 == 1) {
+					// call a new method here that looks for the
+					// cell with the head of a COW in the left direction
+				}
+				else if(check3 == 1) {
+					// etc
+				}
+				else if(check4 == 1) {
+					
+				}
+				
+//			}
+//		}
+
+
+		// can i say something?yes
+		int[] result = {savex,savey};
+		return result;
+	}
+
+
+	// can i say something?
+	/*
+    you already made methods called leftCow and rightCow - each returns a number of cows it found.
+    Make 2 more methods (for up and for down).  Then call all 4 of them and see which
+    one retunrs the number 1.  That's the direction of the wrong way cow.
+
+    int rightNumCows = rightCow(field)
+    int leftNumCows = leftCow(field)  etc.
+	 */
+
+	// I meant for the method 'rightCow' to check just
+	// 3 cells for 'c' 'o' 'w', where the 'c' is at field[i][j]
+	// and then also make methods 'leftcow', 'upcow', 'downcow'
+	// questions?...oh okay got it
+	// the method doesn't nee
+	//d a pair of nested loops!
+	// ok i think i see what you are doing.  this
+	// method is keeping count of *all* the left cows
+	// in the field - is that why you have a pair of
+	// nested loops? what do you mean  
+	public static int leftcow(final char[][] field) {
 		int count = 0;
-    	for(int k=0;k<field.length;k++) {
+		for(int k=0;k<field.length;k++) {
+			for(int l=0;l<field.length;l++) {
+				if(field[k][l]=='C'&&field[k-1][l]=='O'&&field[k-2][l]=='W') {
+					count++; 
+				} 
+			}// So do I just delete the for loops?no!  the way
+			// you wrote this method, it is searching thru the whole
+			// field and counting how many cows are in the left direction.
+			// so that uses 2 nested loops.
+			// can i help you? yes.  how? I still dont get how I should change the method for all direction cows
+// i think the method is ok.  i don't know why there is a red x compiler
+			// error.  maybe mismatched { } up above??  can i try something?
+			// can i do that? correct indentation?
+			// ok, fixed compile eerror.
+		}
+		return count;
+	}
+	public static int rightcow(final char[][] field) {
+		int count = 0;
+		for(int k=0;k<field.length;k++) {
+			for(int l=0;l<field.length;l++) {
+				if(field[k][l]=='C'&&field[k+1][l]=='O'&&field[k+2][l]=='W') {
+					count++; 
+				} 
+			}
+		}
+		return count;
+	}
+	public static int upcow(final char[][] field) {
+		int count = 0;
+		for(int k=0;k<field.length;k++) {
+			for(int l=0;l<field.length;l++) {
+				if(field[k][l]=='C'&&field[k][l+1]=='O'&&field[k][l+1]=='W') {
+					count++; 
+				} 
+			}
+		}
+		return count;
+	}
+	public static int downcow(final char[][] field) {
+		int count = 0;
+		for(int k=0;k<field.length;k++) {
 			for(int l=0;l<field.length;l++) {
 				if(field[k][l]=='C'&&field[k][l-1]=='O'&&field[k][l-2]=='W') {
 					count++; 
 				} 
 			}
 		}
-    	return count;
-    }
-    public static boolean rightcow(final char[][] field, int i, int j) {
-    	for(int k=0;k<field.length;k++) {
-    		for(int l=0;l<field.length;l++) {
-    			if(field[i][j]=='C'){
-    				return true;
-    			}
-    		}
-    	}
-    	return false;
-    }
+		return count;
+	}
 }
 /*  I am not sure how to use this boolean into the code
  * 
@@ -108,9 +184,9 @@ public class TheWrongWayCow {
       "w...o.c....".toCharArray(),
       "....w.o....".toCharArray(),
       "......w.cow".toCharArray()
-      
+
       see how there are 3 "down" cows, one "right" cow and no "left" or "up" cows.
-      
+
  * 
  * boolean rightCow (field, i, j) 
  * 		this method would check in 'field' at cell [i][j] to see
@@ -120,28 +196,28 @@ public class TheWrongWayCow {
  *  If it returns true that means we can check the next two ones and see if it the wrong way cow
      No. I had in mind that "rightCow" meethod checks 3 cells for 'c' 'o' 'w',
      like your code on line 58 above.
-     
+
       If there *is* a 'c' 'o' 'w' there, you still don't know if it is a
       WRONG WAY cow... do you understand how to determine if it is WRONG WAY?
-      
+
       There is only one cow going the wrong way.  It could be an 'up' cow,
       'down' or 'right' or 'left'...how do you determine its the WRONG WAY?
-      
+
       not sure?  you there?
       We can determine the wrong way by comparing it to other cows that are in the lists? There are lots of cows in the same way
       Can you be more specific - "compare" how? So basically using a double for loop, comparing each one another until all of the cows are compared in the array 
       I'm still not clear on "compare". can i explain what needs to happen? okay
-      
+
       In every test case, there are zero or more cows in each of the 4 directions,
       right? yes.  how many cows are there in the "wrong way' direction? 1
       right.  so the double for loop needs to make a count of cows in
       each of the 4 directions.  Only AFTER the loops are done can you
       decide which is the 'wrong way' by looking for the count of 1.
       make sense? okay. 
-      
+
       now if you make 4 methods, rightCow, leftCow, upCow, downCow, you
       can call these inside the for loops, checking each cell in the field.
-      
+
       is this making sense so far?yes  does this help?yes.  ok.  then
       once you determine which is the 'wrong way', you need to go back in
       the field and find where its head is!

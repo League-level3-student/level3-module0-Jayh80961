@@ -55,7 +55,7 @@ public class TheWrongWayCowTest {
     assertArrayEquals(new int[]{3,0}, TheWrongWayCow.findWrongWayCow(show(field)));
   }
 
-  /*
+  
   @Test
   public void ex1() {
     final char[][] field = new char[][] {
@@ -206,5 +206,5 @@ public void mostlyEmpty() {
   };
   assertArrayEquals(new int[]{0,0}, TheWrongWayCow.findWrongWayCow(show(field)));
 }
-*/
+
 }

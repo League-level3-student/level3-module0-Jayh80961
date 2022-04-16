@@ -70,13 +70,15 @@ public class TheWrongWayCow {
 		// can i show you what i mean?yes.  questions? okay
 		//		for(int i=0;i<field.length;i++) {
 		//			for(int j=0;i<field[i].length;j++) { // can i say something
-		System.out.println("got here 1");
+		//System.out.println("got here 1");
 		check1 = check1 + leftcow(field); 
-		System.out.println("got here 3");
+		//System.out.println("got here 3");
 		check2 = check2 + rightcow(field);
 		check3 = check3 + upcow(field);
 		check4 = check4 + downcow(field);
 
+		System.out.println("checks: " + check1 + " " + check2 + " " + check3 + " " + check4);
+		
 		// finish this section - call the correct method in each else if section
 		if(check1 == 1) {
 			// call a new method here that looks for and returns the
@@ -85,12 +87,14 @@ public class TheWrongWayCow {
 			// rigtCow method that does a count.  BUT the new method
 			// is a bit different - it returns the location of 
 			// the head of the right cow.  ok?
-			head = returnRightcow(field);
+			head = returnleftcow(field);
+			//MISTAKE - call returnLEFT heree
 		}
 		else if(check2 == 1) {
 			// call a new method here that looks for the
 			// cell with the head of a COW in the left direction
-			head = returnleftcow(field);
+			head = returnRightcow(field);
+			//MISTAKE - call returnRIGHT heree
 		}
 		else if(check3 == 1) {
 			// etc
@@ -114,7 +118,7 @@ public class TheWrongWayCow {
 		// will only call the CowHead method that has just 1 cow.
 		// questions? no  // dont need
 
-		System.out.print("headd " + head[0] + " " + head[1]);
+		System.out.println("head " + head[0] + " " + head[1]);
 
 		return head;  // this should be 'head'
 
@@ -149,7 +153,7 @@ public class TheWrongWayCow {
 	// in the field - is that why you have a pair of
 	// nested loops? what do you mean  
 	public static int leftcow(final char[][] field) {
-		System.out.println("got here 2");
+		//System.out.println("got here 2");
 		System.out.println("field size: " + field.length + " " + field[0].length);
 		int count = 0;
 		for(int k=0;k<field.length;k++) { 
@@ -171,7 +175,7 @@ public class TheWrongWayCow {
 			}
 
 		}
-		System.out.print(count + " left cows");		// your print statements werre fine why are you changing them?
+		System.out.println(count + " left cows");		// your print statements werre fine why are you changing them?
 		return count;
 	}
 	public static int rightcow(final char[][] field) {
@@ -187,7 +191,7 @@ public class TheWrongWayCow {
 			}
 		} // for example this is ambiguous 
 		// use th word "right" here!
-		System.out.print(count + " right");
+		System.out.println(count + " right"); //I need to seperate them but I dont know where to do that
 		return count;
 	}
 	public static int upcow(final char[][] field) {
@@ -200,7 +204,7 @@ public class TheWrongWayCow {
 				} 
 			}
 		}
-		System.out.print(count + " up cows");
+		System.out.println(count + " up cows");
 		return count;
 	}
 	public static int downcow(final char[][] field) {
@@ -213,7 +217,7 @@ public class TheWrongWayCow {
 				} 
 			}
 		}
-		System.out.print(count + " down cows");
+		System.out.println(count + " down cows");
 		return count;  // let me know if want help.. yes I fixed the m and k but I am not sure why it doesnt work
 	}
 
@@ -230,11 +234,12 @@ public class TheWrongWayCow {
 
 				// use this instead:
 				// 			if(m < field[k].length - 2 &&field[k][m]=='c'&&field[k][m+1]=='o'&&field[k][m+2]=='w')
-				if(l < field[k].length - 2 &&field[k][l]=='c'&&field[k][l+1]=='o'&&field[k][l+2]=='w')
+				if(l < field[k].length -2&&field[k][l]=='c'&&field[k][l+1]=='o'&&field[k][l+2]=='w')
 				{
 					// save values 'k' and 'l' - that's the loc of the head
 					savex = k;
-					savey = l;  // good
+					savey = l;  // good I tried fixing it but it doesnt work
+					// can i take a look? yes
 				}
 
 			}
@@ -248,14 +253,17 @@ public class TheWrongWayCow {
 	public static int[] returnleftcow(final char[][]field) {	///returnRightcow
 		int savex= 0;
 		int savey = 0;
+		System.out.println("return left");
 		for(int k=0;k<field.length;k++) {
 			for(int l=0;l<field[k].length;l++) {
 				// no you test that above
 				// let me show you..
 				// here you need to test 'C' 'O' 'W' in RIGHT direction
 				// no.  like this....
-				if(field[k][l]=='c'&&field[k-1][l]=='o'&&field[k-2][l]=='w') 
+	 // FIX NEXT TIME
+				if(k >= 2 && field[k][l]=='c'&&field[k-1][l]=='o'&&field[k-2][l]=='w') 
 				{
+					System.out.println("x,y " + k + " " + l);
 					// save values 'k' and 'l' - that's the loc of the head
 					savex = k;
 					savey = l;  // good
@@ -265,7 +273,7 @@ public class TheWrongWayCow {
 		}
 		int[] result = {savey,savex};
 		return result;
-		// here - return an int[] array with savex, savey
+		// here - return an int[] array with savex, savey not yet..
 		// great!!  now you need 3 more methods like this ...
 		// returnLeftcow, Up and Down
 	}
@@ -300,7 +308,7 @@ public class TheWrongWayCow {
 			for(int l=0;l<field[k].length;l++) {
 				// no you test that above
 				// let me show you..
-				// here you need to test 'C' 'O' 'W' in RIGHT direction
+				// here you need to test 'C' 'O' 'W' in RIGHT direction I am trying to fix it but if I do I will ask you
 				// no.  like this....
 				if(k < field.length - 2 &&field[k][l]=='c'&&field[k+1][l]=='o'&&field[k+2][l]=='w') {
 					{
